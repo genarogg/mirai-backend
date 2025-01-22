@@ -1,0 +1,31 @@
+model User {
+  id               Int       @id @default(autoincrement())
+  name             String
+  lastName         String
+  email            String    @unique
+  password         String
+  phoneNumber      String? // Opcional, para contacto
+  address          String? // Dirección completa
+  city             String? // Ciudad del usuario
+  state            String? // Estado o provincia
+  postalCode       String? // Código postal
+  country          String? // País
+  dateOfBirth      DateTime? // Fecha de nacimiento, opcional
+  gender           String? // Género, opcional
+  preferredPayment String? // Método de pago preferido (ejemplo: "Tarjeta", "PayPal")
+  subscription     Boolean   @default(false) // Suscripción a newsletters
+  createdAt        DateTime  @default(now()) // Fecha de creación
+  updatedAt        DateTime  @updatedAt // Fecha de última actualización
+
+  role String @default("customer") // customer, admin, seller
+  isActive Boolean @default(true) // Estado activo/inactivo
+  isVerified Boolean @default(false) // Indica si el usuario ha confirmado su email
+  profileImage String? // Imagen de perfil del usuario
+  notificationsEnabled Boolean @default(true) // Control de notificaciones
+  lastLogin DateTime? // Última fecha de inicio de sesión
+  totalOrders Int @default(0) // Número total de pedidos realizados
+  preferredLanguage String? @default("es") // Idioma por defecto
+  preferredCurrency String? @default("USD") // Moneda preferida
+  referralCode String? // Código de referencia para programas de afiliados
+  referrerId Int? // ID del usuario que refirió
+}
