@@ -1,5 +1,5 @@
 const userSchema = /* GraphQL */ `
-  type User {
+    type User {
     id: Int!
     name: String!
     lastName: String!
@@ -35,27 +35,11 @@ const userSchema = /* GraphQL */ `
     lastName: String!
     email: String!
     password: String!
-    phoneNumber: String
-    address: String
-    city: String
-    state: String
-    postalCode: String
-    country: String
-    dateOfBirth: String
-    gender: String
-    preferredPayment: String
-    subscription: Boolean
-    role: String
-    isActive: Boolean
-    isVerified: Boolean
-    profileImage: String
-    notificationsEnabled: Boolean
-    lastLogin: String
-    totalOrders: Int
-    preferredLanguage: String
-    preferredCurrency: String
-    referralCode: String
-    referrerId: Int
+  }
+
+  input LoginUserInput {
+    email: String!
+    password: String!
   }
 
   type AuthPayload {
@@ -70,6 +54,7 @@ const userSchema = /* GraphQL */ `
 
   extend type Mutation {
     createUser(input: CreateUserInput): AuthPayload
+    loginUser(input: LoginUserInput): AuthPayload
   }
 `
 

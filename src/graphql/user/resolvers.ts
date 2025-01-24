@@ -1,5 +1,6 @@
 import { prisma } from "@fn"
 import createUser from "./resolvers/createUser"
+import loginUser from "./resolvers/loginUser"
 
 const resolvers = {
   Query: {
@@ -9,7 +10,8 @@ const resolvers = {
   },
 
   Mutation: {
-    createUser
+    createUser,
+    loginUser
   }
 }
 
