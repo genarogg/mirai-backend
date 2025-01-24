@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "node:dev": "npx prisma generate && ts-node-dev -r tsconfig-paths/register index.ts",
-    "dev": "npx prisma generate && ts-node-dev -r tsconfig-paths/register index.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register index.ts",
     "start": "bun index.ts",
     "copy-views": "copyfiles -u 1 src/**/*.jsx dist/src",
     "build": "tsc && tsc-alias -p tsconfig.json && npm run copy-views",
@@ -22,6 +21,8 @@
     "@apollo/server": "^4.11.3",
     "@prisma/client": "^6.2.1",
     "argon2": "^0.41.1",
+    "axios": "^1.7.9",
+    "cloudinary": "^2.5.1",
     "colors": "^1.4.0",
     "console-clear": "^1.1.1",
     "cors": "^2.8.5",
@@ -32,8 +33,10 @@
     "graphql": "^16.10.0",
     "jsonwebtoken": "^9.0.2",
     "nodemailer": "^6.9.14",
+    "ollama": "^0.5.12",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "sharp": "^0.33.5",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {

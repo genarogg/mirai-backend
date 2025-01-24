@@ -5,6 +5,8 @@ import validarCapchat from "./validarCapchat";
 import verificarToken from "./verificarToken";
 import { encriptarContrasena, compararContrasena } from "./encriptarContrasena";
 import { createResponse, successResponse, errorResponse } from "./response";
+import prisma from "./prisma";
+
 
 export {
     log,
@@ -16,5 +18,6 @@ export {
     compararContrasena,
     createResponse,
     successResponse,
-    errorResponse
+    errorResponse,
+    prisma
 };

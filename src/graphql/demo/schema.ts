@@ -1,5 +1,4 @@
-// ...existing code...
-const typeDefs = /* GraphQL */ `
+const demoTypeDefs = /* GraphQL */ `
   type Demo {
     id: ID!
     name: String!
@@ -17,6 +16,6 @@ const typeDefs = /* GraphQL */ `
   type Subscription {
     demoCreated: Demo
   }
-`
-// ...existing code...
-export default typeDefs
+`;
+
+export default demoTypeDefs;

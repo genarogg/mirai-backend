@@ -20,6 +20,7 @@ datasource db {
 model User {
   id               Int       @id @default(autoincrement())
   name             String
+  lastName         String
   email            String    @unique
   password         String
   phoneNumber      String? // Opcional, para contacto

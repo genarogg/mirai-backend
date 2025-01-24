@@ -1,9 +1,8 @@
-import { buildSchema } from 'graphql';
-import demoSchema from './demo/schema';
+import { mergeTypeDefs } from '@graphql-tools/merge';
 
+import demoTypeDefs from './demo/schema'
+import userTypeDefs from './user/schema'
 
-const schema = buildSchema(`
-  ${demoSchema}
-`);
+const typeDefs = mergeTypeDefs([demoTypeDefs, userTypeDefs]);
 
-export default schema;
+export default typeDefs;

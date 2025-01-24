@@ -15,7 +15,7 @@ viewEngine(app);
 import dbConection from "@config/db-conection";
 dbConection();
 
-import startApolloServer from "@config/graphql";
+import startApolloServer from "@graphql/graphql";
 startApolloServer(app);
 
 import router from "@config/router";

@@ -1,16 +1,12 @@
 import jwt from "jsonwebtoken";
 
 interface Usuario {
-    id: number;
+    id: number | string;
 }
 
 const generarToken = (usuario: Usuario): string => {
-    const JWTSECRETO = process.env.JWTSECRETO;
+    const JWTSECRETO = process.env.JWTSECRETO || "jwt-secret";
     const JWTTIEMPO = process.env.JWTTIEMPO || "1d";
-
-    if (!JWTSECRETO) {
-        throw new Error("La clave secreta JWTSECRETO no está definida en las variables de entorno.");
-    }
 
     const { id } = usuario;
 

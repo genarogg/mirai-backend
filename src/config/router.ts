@@ -1,8 +1,9 @@
 // Importar rutas
-import { inicioRouter } from "@router";
+import { inicioRouter, iaRouter } from "@router";
 
 const router = (app: any) => {
     app.use("/", inicioRouter);
+    app.use("/ia", iaRouter);
 
     // Middleware de manejo de errores
     app.use((err: any, req: any, res: any, next: any) => {
