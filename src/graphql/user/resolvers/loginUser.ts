@@ -10,10 +10,6 @@ const loginUser = async (_: any, { input }: any) => {
     try {
         const { email, password } = input
 
-        if (!email || !password) {
-            return errorResponse({ message: "Email y contraseña son requeridos" })
-        }
-
         const user = await prisma.user.findUnique({
             where: { email }
         })
