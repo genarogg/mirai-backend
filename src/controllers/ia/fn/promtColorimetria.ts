@@ -50,9 +50,7 @@ data:
 {
   "idioma": "español",
   "piel": {
-    "colorPredominante": {
-      "hsl": "(h, s, l)"
-    },
+    "colorPredominante": { "hsl": "(h, s, l)" },
     "subtonos": "cálido",
     "variaciones": {
       "frente": { "hsl": "(h, s, l)" },
@@ -92,7 +90,18 @@ data:
     "brillo": "moderado",
     "otrosRasgos": "textura suave"
   },
+  "coloresRopaFavorables": {
+    "paletaCalida": ["(h, s, l)", "(h, s, l)", "(h, s, l)", "(h, s, l)", "(h, s, l)"],
+    "coloresNeutros": ["(h, s, l)", "(h, s, l)", "(h, s, l)", "(h, s, l)", "(h, s, l)"],
+    "coloresAcento": ["(h, s, l)", "(h, s, l)", "(h, s, l)", "(h, s, l)", "(h, s, l)"],
+    "coloresEvitar": ["(h, s, l)", "(h, s, l)", "(h, s, l)", "(h, s, l)", "(h, s, l)"]
+  },
   "paletaCromatica": [
+    { "hsl": "(h, s, l)" },
+    { "hsl": "(h, s, l)" },
+    { "hsl": "(h, s, l)" },
+    { "hsl": "(h, s, l)" },
+    { "hsl": "(h, s, l)" },
     { "hsl": "(h, s, l)" },
     { "hsl": "(h, s, l)" },
     { "hsl": "(h, s, l)" },
