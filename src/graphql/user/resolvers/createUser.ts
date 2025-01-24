@@ -33,6 +33,7 @@ const createUser = async (_: any, { input }: any) => {
         const token = generarToken(user)
 
         return successResponse({ message: "Usuario creado exitosamente", token })
+        
     } catch (error) {
         console.error("Error al crear el usuario:", error)
         return errorResponse({ message: "Error al crear el usuario" })

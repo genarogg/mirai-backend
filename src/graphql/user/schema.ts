@@ -50,7 +50,7 @@ const userSchema = /* GraphQL */ `
 
   type UsuarioPayload {
     message: String
-    usuario: User!
+    data: [User]
   }
 
   type VerificarTokenPayload {
@@ -60,9 +60,10 @@ const userSchema = /* GraphQL */ `
   }
 
   extend type Query {
-    users: [User]
+    getAllUsers(token: String!): UsuarioPayload
     verificarToken(token: String!): VerificarTokenPayload
   }
+
   extend type Mutation {
     createUser(input: CreateUserInput): AuthPayload
     loginUser(input: LoginUserInput): AuthPayload
