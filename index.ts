@@ -21,5 +21,11 @@ startApolloServer(app);
 import router from "@config/router";
 router(app);
 
+import seed from "./src/apiFake/seed";
+
+if (process.env.NODE_ENV !== 'production') {
+    seed()
+}
+
 import startServer from "@config/startServer";
 startServer(app);

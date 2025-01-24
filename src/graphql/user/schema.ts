@@ -1,5 +1,5 @@
 const userSchema = /* GraphQL */ `
-    type User {
+  type User {
     id: Int!
     name: String!
     lastName: String!
@@ -44,14 +44,25 @@ const userSchema = /* GraphQL */ `
 
   type AuthPayload {
     type: String!
-    message: String!
+    message: String
     token: String
+  }
+
+  type UsuarioPayload {
+    message: String
+    usuario: User!
+  }
+
+  type VerificarTokenPayload {
+    type: String!
+    message: String!
+    isValid: Boolean!
   }
 
   extend type Query {
     users: [User]
+    verificarToken(token: String!): VerificarTokenPayload
   }
-
   extend type Mutation {
     createUser(input: CreateUserInput): AuthPayload
     loginUser(input: LoginUserInput): AuthPayload
