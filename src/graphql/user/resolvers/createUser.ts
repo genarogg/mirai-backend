@@ -7,29 +7,36 @@ import {
 } from '@fn'
 
 const createUser = async (_: any, { input }: any) => {
-    
-    const data = Object.assign({}, input)
+    try {
+        const { email, password, ...data } = input
 
-    const existingUser = await prisma.user.findUnique({
-        where: { email: data.email }
-    })
+        console.log("input", data)
 
-    if (existingUser) {
-        return errorResponse({ message: "Email ya registrado" })
-    }
+        const existingUser = await prisma.user.findUnique({
+            where: { email }
+        })
 
-    const password = await encriptarContrasena({ password: data.password })
-
-    const user = await prisma.user.create({
-        data: {
-            ...data,
-            password
+        if (existingUser) {
+            return errorResponse({ message: "Email ya registrado" })
         }
-    })
 
-    const token = generarToken(user)
+        const hashedPassword = await encriptarContrasena({ password })
 
-    return successResponse({ message: "Usuario creado exitosamente", token })
+        const user = await prisma.user.create({
+            data: {
+                ...data,
+                email,
+                password: hashedPassword
+            }
+        })
+
+        const token = generarToken(user)
+
+        return successResponse({ message: "Usuario creado exitosamente", token })
+    } catch (error) {
+        console.error("Error al crear el usuario:", error)
+        return errorResponse({ message: "Error al crear el usuario" })
+    }
 }
 
 export default createUser
