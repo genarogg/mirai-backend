@@ -7,6 +7,6 @@ const router: Router = Router();
 
 router.post("/analizer-colorimetria/azura", analizarImgAzura);
 
-router.post("/up", uploadFile);
+router.post("/up", uploadFile, analizarImgAzura);
 
 export default router;
