@@ -1,1 +1,1 @@
-/a:/+/Usuario/Desktop/mirai-backend/src/models/AnalisisFacial.prisma
+./src/models/*.prisma

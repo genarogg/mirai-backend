@@ -6,7 +6,7 @@ import verificarTokenUtil from "./verificarTokenUtil";
 import { encriptarContrasena, compararContrasena } from "./encriptarContrasena";
 import { createResponse, successResponse, errorResponse } from "./response";
 import prisma from "./prisma";
-
+import uploadFile from "./uploadFile";
 
 export {
     log,
@@ -19,5 +19,6 @@ export {
     createResponse,
     successResponse,
     errorResponse,
-    prisma
+    prisma,
+    uploadFile
 };
