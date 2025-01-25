@@ -28,4 +28,6 @@ model User {
   preferredCurrency String? @default("USD") // Moneda preferida
   referralCode String? // Código de referencia para programas de afiliados
   referrerId Int? // ID del usuario que refirió
+
+  AnalisisFacial AnalisisFacial[]
 }

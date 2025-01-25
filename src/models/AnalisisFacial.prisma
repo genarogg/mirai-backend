@@ -1,0 +1,49 @@
+model AnalisisFacial {
+  id     Int  @id @default(autoincrement())
+  userId Int
+
+  user   User @relation(fields: [userId], references: [id]) // 
+
+  idioma         String?
+  formaDeOjos    String?
+  formaDelrostro String?
+  tipoDePiel     String?
+  simetriaFacial String?
+
+  // Piel
+  colorPrincipalPielHex String?
+  subtonosPiel          String?
+  frenteHex             String?
+  mejillasHex           String?
+  narizHex              String?
+  mentonHex             String?
+
+  // Ojos
+  colorOjosHex         String?
+  anilloLimbalColorHex String?
+  anilloLimbalGrosor   String?
+  contrasteEsclerotica String?
+  proporcionOjosCara   String?
+  distanciaInterocular String?
+
+  // Nariz
+  formaDeLaNariz  String?
+  anchoDeLasFosas String?
+
+  // Boca & Labios
+  formaDeLosLabios String?
+  contornoDeLabios String?
+  tamanoDeLaBoca   String?
+
+  // Cabello
+  colorBaseHex       String?
+  reflejosTonos      String?
+  reflejosProporcion String?
+  raizHex            String?
+  puntasHex          String?
+
+  // Colorimetría
+  coloresQueFavorecen    Json?
+  coloresQueDesfavorecen Json?
+  estacionDeColor        String?
+}

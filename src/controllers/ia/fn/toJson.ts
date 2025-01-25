@@ -1,10 +1,17 @@
 const toJson = (responseStr: string): any => {
-    const cleanStr = responseStr.replace(/```json/g, '').replace(/```/g, '').trim()
+    // Eliminar los caracteres de escape y limpiar la cadena
+    const cleanStr = responseStr.trim()
+        .replace(/\\n/g, '')
+        .replace(/\\"/g, '"')
+        .replace(/```json/g, '')
+        .replace(/```/g, '')
+        .replace(/data: /g, '');
+        
     try {
-        return JSON.parse(cleanStr)
+        return JSON.parse(cleanStr);
     } catch (error) {
-        return { error: 'No se pudo convertir en JSON', originalResponse: responseStr }
+        return { error: { error: 'No se pudo convertir en JSON', originalResponse: responseStr } };
     }
 }
 
-export default toJson
+export default toJson;

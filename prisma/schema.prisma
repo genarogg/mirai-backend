@@ -1,3 +1,53 @@
+model AnalisisFacial {
+  id     Int  @id @default(autoincrement())
+  userId Int
+
+  user   User @relation(fields: [userId], references: [id]) // 
+
+  idioma         String?
+  formaDeOjos    String?
+  formaDelrostro String?
+  tipoDePiel     String?
+  simetriaFacial String?
+
+  // Piel
+  colorPrincipalPielHex String?
+  subtonosPiel          String?
+  frenteHex             String?
+  mejillasHex           String?
+  narizHex              String?
+  mentonHex             String?
+
+  // Ojos
+  colorOjosHex         String?
+  anilloLimbalColorHex String?
+  anilloLimbalGrosor   String?
+  contrasteEsclerotica String?
+  proporcionOjosCara   String?
+  distanciaInterocular String?
+
+  // Nariz
+  formaDeLaNariz  String?
+  anchoDeLasFosas String?
+
+  // Boca & Labios
+  formaDeLosLabios String?
+  contornoDeLabios String?
+  tamanoDeLaBoca   String?
+
+  // Cabello
+  colorBaseHex       String?
+  reflejosTonos      String?
+  reflejosProporcion String?
+  raizHex            String?
+  puntasHex          String?
+
+  // Colorimetría
+  coloresQueFavorecen    Json?
+  coloresQueDesfavorecen Json?
+  estacionDeColor        String?
+}
+
 model Bitacora {
     id              Int      @id @default(autoincrement())
     usuario         String
@@ -47,4 +97,6 @@ model User {
   preferredCurrency String? @default("USD") // Moneda preferida
   referralCode String? // Código de referencia para programas de afiliados
   referrerId Int? // ID del usuario que refirió
+
+   AnalisisFacial AnalisisFacial[]
 }
