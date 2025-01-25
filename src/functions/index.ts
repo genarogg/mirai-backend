@@ -8,6 +8,7 @@ import { createResponse, successResponse, errorResponse } from "./response";
 import prisma from "./prisma";
 import uploadFile from "./uploadFile";
 
+
 export {
     log,
     path,
@@ -20,5 +21,6 @@ export {
     successResponse,
     errorResponse,
     prisma,
-    uploadFile
+    uploadFile,
+
 };

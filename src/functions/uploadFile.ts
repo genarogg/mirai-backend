@@ -1,33 +1,30 @@
-import { Request, Response, NextFunction } from 'express';
-import Busboy from 'busboy';
-import fs from 'fs';
-import path from 'path';
+import { Request, Response, NextFunction } from "express";
+import multer from "multer";
+import path from "path";
+import crypto from "crypto";
 
-const uploadDir = path.join(__dirname, '../public/upload');
+// Configuración de multer con renombrado de archivo
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, '../public/uploads/'));
+    },
+    filename: (req, file, cb) => {
+        const hash = crypto.randomBytes(8).toString('hex');
+        const ext = path.extname(file.originalname);
+        cb(null, `${hash}${ext}`);
+    }
+});
+
+const upload = multer({ storage });
 
 const uploadFile = (req: Request, res: Response, next: NextFunction) => {
-    const busboy = Busboy({ headers: req.headers });
-
-    busboy.on('file', (fieldname: string, file: NodeJS.ReadableStream, filename: string | { filename: string }, encoding: string, mimetype: string) => {
-        let actualFilename: string;
-        if (typeof filename === 'string') {
-            actualFilename = filename;
-        } else if (filename && typeof filename.filename === 'string') {
-            actualFilename = filename.filename;
-        } else {
-            console.error('Filename is not a string:', filename);
-            return;
+    upload.single('file')(req, res, (err) => {
+        if (err) {
+            return res.status(400).send({ message: 'Error uploading file.' });
         }
-
-        const saveTo = path.join(uploadDir, path.basename(actualFilename));
-        file.pipe(fs.createWriteStream(saveTo));
+        console.log('File uploaded successfully:', req.file);
+        next();
     });
-
-    busboy.on('finish', () => {
-        res.status(200).send('Archivo subido exitosamente');
-    });
-
-    req.pipe(busboy);
 };
 
 export default uploadFile;

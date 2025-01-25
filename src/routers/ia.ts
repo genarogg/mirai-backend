@@ -1,10 +1,12 @@
 import { Router } from "express";
 import { analizarImgAzura } from "@controller/index";
-import { uploadFile } from "@fn";
+import { uploadFile, verificarTokenUtil } from "@fn";
+
 
 const router: Router = Router();
 
 router.post("/analizer-colorimetria/azura", analizarImgAzura);
-router.post("/up", uploadFile, (req, res) => { console.log("hola") });
+
+router.post("/up", uploadFile);
 
 export default router;
