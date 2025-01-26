@@ -5,9 +5,9 @@ import crypto from "crypto";
 import sharp from "sharp";
 import fs from "fs";
 import svg from "./svg"; // Asegúrate de que la ruta sea correcta
+import { verificarTokenUtil, errorResponse } from "@fn";
 
 // Configuración de multer con renombrado de archivo
-
 const folder = '../../public/uploads/';
 
 const storage = multer.diskStorage({
@@ -17,13 +17,27 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         const hash = crypto.randomBytes(8).toString('hex');
         const ext = path.extname(file.originalname);
-        cb(null, `${hash}${ext}`);
+        const filename = `${hash}${ext}`;
+        req.body.nameImg = hash; // Cargar el nombre hasheado del archivo en req.body.nameImg
+        cb(null, filename);
     }
 });
 
 const upload = multer({ storage });
 
-const uploadFile = (req: Request, res: Response, next: NextFunction) => {
+const uploadFile = async (req: Request, res: Response, next: NextFunction) => {
+    const token = req.headers.authorization?.split(" ")[1];
+
+    if (!token) {
+        return res.status(401).send({ message: 'Token no proporcionado' });
+    }
+
+    const usuario = await verificarTokenUtil(token);
+
+    if (!usuario) {
+        return errorResponse({ message: "Token no válido" });
+    }
+
     upload.single('file')(req, res, async (err) => {
         if (err) {
             return res.status(400).send({ message: 'Error uploading file.' });
@@ -55,6 +69,7 @@ const uploadFile = (req: Request, res: Response, next: NextFunction) => {
             fs.writeFileSync(svgFilePath, svgContent);
 
             // Cargar la información en base64 de la imagen en el cuerpo de la respuesta
+            req.body.usuario = usuario;
             req.body.base64Img = base64Image;
 
             next();

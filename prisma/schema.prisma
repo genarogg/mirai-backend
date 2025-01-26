@@ -1,51 +1,23 @@
 model AnalisisFacial {
-  id     Int  @id @default(autoincrement())
-  userId Int
+  id           Int     @id @default(autoincrement())
+  userId       Int
+  imgProcessed String?
 
-  user   User @relation(fields: [userId], references: [id]) // 
+  user User @relation(fields: [userId], references: [id])
 
-  idioma         String?
-  formaDeOjos    String?
-  formaDelrostro String?
-  tipoDePiel     String?
-  simetriaFacial String?
-
-  // Piel
-  colorPrincipalPielHex String?
-  subtonosPiel          String?
-  frenteHex             String?
-  mejillasHex           String?
-  narizHex              String?
-  mentonHex             String?
-
-  // Ojos
-  colorOjosHex         String?
-  anilloLimbalColorHex String?
-  anilloLimbalGrosor   String?
-  contrasteEsclerotica String?
-  proporcionOjosCara   String?
-  distanciaInterocular String?
-
-  // Nariz
-  formaDeLaNariz  String?
-  anchoDeLasFosas String?
-
-  // Boca & Labios
-  formaDeLosLabios String?
-  contornoDeLabios String?
-  tamanoDeLaBoca   String?
-
-  // Cabello
-  colorBaseHex       String?
-  reflejosTonos      String?
-  reflejosProporcion String?
-  raizHex            String?
-  puntasHex          String?
-
-  // Colorimetría
-  coloresQueFavorecen    Json?
-  coloresQueDesfavorecen Json?
-  estacionDeColor        String?
+  colorDePiel        String?
+  colorDePelo        String?
+  colorDeOjos        String?
+  tonoDePiel         String?
+  subtonoDePiel      String?
+  estacionDelAno     String?
+  tipoDeRostro       String?
+  sistemaFitzpatrick String?
+  PantoneSkintone    String?
+  NARSSkinToneSystem String?
+  LOrealColorCode    String?
+  ColorMeBeautiful   String?
+  MunsellColorSystem String?
 }
 
 model Bitacora {
@@ -98,5 +70,5 @@ model User {
   referralCode String? // Código de referencia para programas de afiliados
   referrerId Int? // ID del usuario que refirió
 
-   AnalisisFacial AnalisisFacial[]
+  AnalisisFacial AnalisisFacial[]
 }

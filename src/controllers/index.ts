@@ -1,7 +1,9 @@
 // archivo para importar todos los controladores
-import analizarImgAzura from "./ia/analizarImgAzura";
+
+import analizarImgGenericoHindra from "./ia/analizarImgGenericoHindra";
 
 
 export {
-    analizarImgAzura,
+
+    analizarImgGenericoHindra
 }
