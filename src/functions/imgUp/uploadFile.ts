@@ -5,9 +5,9 @@ import crypto from "crypto";
 import sharp from "sharp";
 import fs from "fs";
 import svg from "./svg"; // Asegúrate de que la ruta sea correcta
-import { verificarTokenUtil, errorResponse } from "@fn";
-
+import { verificarTokenUtil, errorResponse } from "@fn"
 // Configuración de multer con renombrado de archivo
+
 const folder = '../../public/uploads/';
 
 const storage = multer.diskStorage({
@@ -17,26 +17,27 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         const hash = crypto.randomBytes(8).toString('hex');
         const ext = path.extname(file.originalname);
-        const filename = `${hash}${ext}`;
-        req.body.nameImg = hash; // Cargar el nombre hasheado del archivo en req.body.nameImg
-        cb(null, filename);
+        req.body.nameImg = hash;
+        cb(null, `${hash}${ext}`);
     }
 });
 
 const upload = multer({ storage });
 
 const uploadFile = async (req: Request, res: Response, next: NextFunction) => {
-    const token = req.headers.authorization?.split(" ")[1];
+
+    const token = req.headers.authorization?.split(" ")[1]
 
     if (!token) {
         return res.status(401).send({ message: 'Token no proporcionado' });
     }
 
-    const usuario = await verificarTokenUtil(token);
+    const usuario = await verificarTokenUtil(token)
 
     if (!usuario) {
-        return errorResponse({ message: "Token no válido" });
+        return errorResponse({ message: "Token no válido" })
     }
+
 
     upload.single('file')(req, res, async (err) => {
         if (err) {
@@ -44,6 +45,7 @@ const uploadFile = async (req: Request, res: Response, next: NextFunction) => {
         }
 
         if (!req.file) {
+            
             return res.status(400).send({ message: 'No file uploaded.' });
         }
 
@@ -69,7 +71,7 @@ const uploadFile = async (req: Request, res: Response, next: NextFunction) => {
             fs.writeFileSync(svgFilePath, svgContent);
 
             // Cargar la información en base64 de la imagen en el cuerpo de la respuesta
-            req.body.usuario = usuario;
+            req.body.usuario = usuario
             req.body.base64Img = base64Image;
 
             next();

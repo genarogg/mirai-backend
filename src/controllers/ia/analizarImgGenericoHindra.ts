@@ -6,12 +6,8 @@ import promt from './hindra/promt'
 import toJson from './fn/toJson'
 
 const analizarImgGenericoHindra = async (req: Request, res: Response) => {
-
-  console.log( req.body.nameImg)
   res.status(200).json({ message: 'Imagen cargada' })
-  console.time('Tiempo de respuesta');
-
-
+  
   try {
     const startTime = Date.now();
     const response = await ollama.chat({
@@ -34,6 +30,7 @@ const analizarImgGenericoHindra = async (req: Request, res: Response) => {
     // Guardar la información de analisisFacial en la base de datos
     const analisisFacialData = {
       userId: req.body.usuario.id,
+      imgProcessed: req.body.nameImg,
       colorDePiel: data.colorDePiel,
       colorDePelo: data.colorDePelo,
       colorDeOjos: data.colorDeOjos,
@@ -64,7 +61,7 @@ const analizarImgGenericoHindra = async (req: Request, res: Response) => {
 
   } catch (error) {
     log.error(`Error en analizarImgGenericoHindra:, ${error}`)
-   
+
   }
 }
 

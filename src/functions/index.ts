@@ -22,5 +22,4 @@ export {
     errorResponse,
     prisma,
     uploadFile,
-
 };

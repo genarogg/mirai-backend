@@ -5,8 +5,6 @@ import { uploadFile } from "@fn";
 
 const router: Router = Router();
 
-
-
 router.post("/up", uploadFile, analizarImgGenericoHindra);
 
 export default router;
