@@ -35,11 +35,15 @@ const userSchema = /* GraphQL */ `
     lastName: String!
     email: String!
     password: String!
+    recaptcha: String
+    token: String
   }
 
   input LoginUserInput {
     email: String!
     password: String!
+    recaptcha: String
+    token: String
   }
 
   type AuthPayload {
