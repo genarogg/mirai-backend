@@ -1,13 +1,15 @@
 import { Request, Response } from 'express'
 import ollama from 'ollama'
-import { prisma, log } from '@fn'
+import { prisma, log, successResponse } from '@fn'
 
 import promt from './hindra/promt'
 import toJson from './fn/toJson'
 
 const analizarImgGenericoHindra = async (req: Request, res: Response) => {
-  res.status(200).json({ message: 'Imagen cargada' })
-  
+  res.status(200).json(successResponse({ message: 'Imagen cargada' }))
+
+
+  console.log("req.body")
   try {
     const startTime = Date.now();
     const response = await ollama.chat({

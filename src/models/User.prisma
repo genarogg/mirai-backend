@@ -17,6 +17,8 @@ model User {
   createdAt        DateTime  @default(now()) // Fecha de creación
   updatedAt        DateTime  @updatedAt // Fecha de última actualización
 
+  imgForChange     String? 
+
   role String @default("customer") // customer, admin, seller
   isActive Boolean @default(true) // Estado activo/inactivo
   isVerified Boolean @default(false) // Indica si el usuario ha confirmado su email
@@ -30,4 +32,6 @@ model User {
   referrerId Int? // ID del usuario que refirió
 
   AnalisisFacial AnalisisFacial[]
+  
+  
 }

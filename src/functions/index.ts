@@ -9,6 +9,7 @@ import prisma from "./prisma";
 import uploadFile from "./imgUp/uploadFile";
 
 
+
 export {
     log,
     path,
@@ -21,5 +22,5 @@ export {
     successResponse,
     errorResponse,
     prisma,
-    uploadFile,
+    uploadFile
 };
