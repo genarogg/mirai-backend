@@ -4,14 +4,7 @@ model User {
   lastName         String
   email            String    @unique
   password         String
-  phoneNumber      String? // Opcional, para contacto
-  address          String? // Dirección completa
-  city             String? // Ciudad del usuario
-  state            String? // Estado o provincia
-  postalCode       String? // Código postal
-  country          String? // País
-  dateOfBirth      DateTime? // Fecha de nacimiento, opcional
-  gender           String? // Género, opcional
+  
   preferredPayment String? // Método de pago preferido (ejemplo: "Tarjeta", "PayPal")
   subscription     Boolean   @default(false) // Suscripción a newsletters
   createdAt        DateTime  @default(now()) // Fecha de creación
@@ -32,6 +25,7 @@ model User {
   referrerId Int? // ID del usuario que refirió
 
   AnalisisFacial AnalisisFacial[]
+  userProfile      UserProfile[]
   
   
 }

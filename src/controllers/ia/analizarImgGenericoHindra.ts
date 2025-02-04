@@ -8,8 +8,10 @@ import toJson from './fn/toJson'
 const analizarImgGenericoHindra = async (req: Request, res: Response) => {
   res.status(200).json(successResponse({ message: 'Imagen cargada' }))
 
+  const { usuario, originalNameFile } = req.body;
 
-  console.log("req.body")
+  const { id } = usuario
+
   try {
     const startTime = Date.now();
     const response = await ollama.chat({
@@ -28,6 +30,14 @@ const analizarImgGenericoHindra = async (req: Request, res: Response) => {
       console.log(data)
       return
     }
+
+    console.log(originalNameFile)
+
+
+    await prisma.user.update({
+      where: { id },
+      data: { profileImage: originalNameFile }
+    });
 
     // Guardar la información de analisisFacial en la base de datos
     const analisisFacialData = {

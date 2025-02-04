@@ -1,0 +1,23 @@
+model UserProfile {
+    id                     Int       @id @default(autoincrement())
+    userId                 Int       // ID del usuario 
+    user                   User      @relation(fields: [userId], references: [id])
+    phoneNumber            String? // Opcional, para contacto
+    address                String? // Dirección completa
+    city                   String? // Ciudad del usuario
+    state                  String? // Estado o provincia
+    postalCode             String? // Código postal
+    country                String? // País
+    dateOfBirth            DateTime? // Fecha de nacimiento, opcional
+    
+    etnia                  String? // Etnia
+    idiomas                String // Idiomas
+   
+    sexo                   String? // Sexo
+    altura                 String? // Altura
+    peso                   String? // Peso
+    tallaDeRopa            String? // Talla de ropa
+
+    
+    edad                   Int // Edad
+}

@@ -1,10 +1,26 @@
 const userSchema = /* GraphQL */ `
-  type User {
-    id: Int!
-    name: String!
-    lastName: String!
-    email: String!
-    password: String!
+  type AnalisisFacial {
+    id: Int
+    userId: Int
+    imgProcessed: String
+    colorDePiel: String
+    colorDePelo: String
+    colorDeOjos: String
+    tonoDePiel: String
+    subtonoDePiel: String
+    estacionDelAno: String
+    tipoDeRostro: String
+    sistemaFitzpatrick: String
+    PantoneSkintone: String
+    NARSSkinToneSystem: String
+    LOrealColorCode: String
+    ColorMeBeautiful: String
+    MunsellColorSystem: String
+  }
+
+  type UserProfile {
+    id: Int
+    userId: Int
     phoneNumber: String
     address: String
     city: String
@@ -12,14 +28,29 @@ const userSchema = /* GraphQL */ `
     postalCode: String
     country: String
     dateOfBirth: String
-    gender: String
-    preferredPayment: String
+
+    etnia: String
+    idiomas: String
+    sexo: String
+    altura: String
+    peso: String
+    tallaDeRopa: String
+    edad: Int
+  }
+
+  type User {
+    id: Int!
+    name: String!
+    lastName: String!
+    email: String!
+    password: String!
     subscription: Boolean
     createdAt: String
     updatedAt: String
     role: String
     isActive: Boolean
     isVerified: Boolean
+    imgForChange: String
     profileImage: String
     notificationsEnabled: Boolean
     lastLogin: String
@@ -28,6 +59,8 @@ const userSchema = /* GraphQL */ `
     preferredCurrency: String
     referralCode: String
     referrerId: Int
+    AnalisisFacial: [AnalisisFacial]
+    userProfile: [UserProfile]
   }
 
   input CreateUserInput {
@@ -54,7 +87,7 @@ const userSchema = /* GraphQL */ `
 
   type UsuarioPayload {
     message: String
-    data: [User]
+    data: User
   }
 
   type VerificarTokenPayload {
@@ -65,6 +98,7 @@ const userSchema = /* GraphQL */ `
 
   extend type Query {
     getAllUsers(token: String!): UsuarioPayload
+    getUser(token: String!): UsuarioPayload
     verificarToken(token: String!): VerificarTokenPayload
   }
 

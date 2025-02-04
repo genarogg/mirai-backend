@@ -2,5 +2,6 @@
 
 import inicioRouter from "./inicio";
 import iaRouter from "./ia";
+import userRouter from "./user"
 
-export { inicioRouter, iaRouter };
+export { inicioRouter, iaRouter, userRouter };

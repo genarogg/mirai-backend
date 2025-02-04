@@ -11,13 +11,13 @@ const analizarImgChange = async (req: Request, res: Response) => {
   if (!id || !originalNameFile) {
     return res.status(400).json(errorResponse({ message: 'id y nameImg son requeridos' }));
   }
-  console.log("req.body")
+
 
   try {
 
     const imgForChange = originalNameFile
 
-    const ha = await prisma.user.update({
+    await prisma.user.update({
       where: { id },
       data: { imgForChange }
     });
