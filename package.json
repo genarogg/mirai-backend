@@ -18,6 +18,7 @@
   "license": "MIT",
   "description": "",
   "dependencies": {
+    "@apollo/client": "^3.13.1",
     "@apollo/server": "^4.11.3",
     "@prisma/client": "^6.2.1",
     "@types/connect-busboy": "^1.0.3",

@@ -1,18 +1,30 @@
 import ollama from 'ollama';
 import { Request, Response } from 'express';
 
+import { verificarTokenUtil } from '@fn';
+
+import contruirPromt from "./initPromt"
+
 const comoMeQueda = async (req: Request, res: Response) => {
 
-    console.log(req.body)
+    const token = req.headers.authorization?.split(' ')[1];
+
+    if (!token) {
+        return res.status(401).json({ error: 'No se ha proporcionado un token' });
+    }
+
+    const usuario = await verificarTokenUtil(token);
+
+    const promt = await contruirPromt({ slug: req.body.slug, usuario });
 
     try {
         const responseStream = await ollama.chat({
             model: 'llama3',
             messages: [{
                 role: 'user',
-                content: "que es un promt",
+                content: promt,
             }],
-            stream: true 
+            stream: true
         });
 
         res.setHeader('Content-Type', 'text/event-stream');
