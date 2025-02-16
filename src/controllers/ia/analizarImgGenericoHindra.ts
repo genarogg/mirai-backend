@@ -33,9 +33,6 @@ const analizarImgGenericoHindra = async (req: Request, res: Response) => {
 
     console.log(data)
 
-    console.log(originalNameFile)
-
-
     await prisma.user.update({
       where: { id },
       data: { profileImage: originalNameFile }

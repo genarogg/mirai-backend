@@ -12,7 +12,6 @@ const analizarImgChange = async (req: Request, res: Response) => {
     return res.status(400).json(errorResponse({ message: 'id y nameImg son requeridos' }));
   }
 
-
   try {
 
     const imgForChange = originalNameFile
