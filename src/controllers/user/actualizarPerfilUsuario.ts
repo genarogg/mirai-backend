@@ -6,13 +6,13 @@ export const actualizarPerfilUsuario = async (req: Request, res: Response) => {
         const token = req.headers.authorization?.split(" ")[1];
 
         if (!token) {
-            return errorResponse({ message: 'Token no proporcionado' });
+            return res.status(401).json(errorResponse({ message: 'Token no proporcionado' }));
         }
 
         const usuario = await verificarTokenUtil(token);
 
         if (!usuario) {
-            return errorResponse({ message: "Token no válido" });
+            return res.status(401).json(errorResponse({ message: "Token no válido" }));
         }
 
         const { id } = usuario;
@@ -33,10 +33,27 @@ export const actualizarPerfilUsuario = async (req: Request, res: Response) => {
             tallaDeRopa
         } = req.body;
 
-        const edad =   new Date().getFullYear() - new Date(dateOfBirth).getFullYear()
+        const edad = new Date().getFullYear() - new Date(dateOfBirth).getFullYear();
 
-        const newProfile = await prisma.userProfile.create({
-            data: {
+        const newProfile = await prisma.userProfile.upsert({
+            where: { id },
+            update: {
+                address,
+                altura: altura || null,
+                city,
+                country,
+                dateOfBirth: dateOfBirth ? new Date(dateOfBirth) : null,
+                etnia,
+                idiomas,
+                peso: peso || null,
+                phoneNumber,
+                postalCode,
+                sexo,
+                state,
+                tallaDeRopa: tallaDeRopa || null,
+                edad
+            },
+            create: {
                 userId: id,
                 address,
                 altura: altura || null,

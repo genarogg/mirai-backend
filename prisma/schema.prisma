@@ -66,7 +66,9 @@ model User {
   referrerId Int? // ID del usuario que refirió
 
   AnalisisFacial AnalisisFacial[]
-  userProfile      UserProfile[] 
+  userProfile      UserProfile[]
+  
+  
 }
 
 model UserProfile {
@@ -80,7 +82,7 @@ model UserProfile {
     postalCode             String? // Código postal
     country                String? // País
     dateOfBirth            DateTime? // Fecha de nacimiento, opcional
-    gender                 String? // Género, opcional
+    
     etnia                  String? // Etnia
     idiomas                String // Idiomas
    

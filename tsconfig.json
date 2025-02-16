@@ -12,6 +12,7 @@
     ],
     "baseUrl": "./src",
     "paths": {
+      
       "@fn": [
         "functions/index.ts"
       ],

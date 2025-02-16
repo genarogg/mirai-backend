@@ -31,6 +31,8 @@ const analizarImgGenericoHindra = async (req: Request, res: Response) => {
       return
     }
 
+    console.log(data)
+
     console.log(originalNameFile)
 
 

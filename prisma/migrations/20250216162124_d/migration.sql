@@ -66,7 +66,6 @@ CREATE TABLE "UserProfile" (
     "postalCode" TEXT,
     "country" TEXT,
     "dateOfBirth" DATETIME,
-    "gender" TEXT,
     "etnia" TEXT,
     "idiomas" TEXT NOT NULL,
     "sexo" TEXT,
