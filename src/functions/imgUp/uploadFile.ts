@@ -26,6 +26,7 @@ const upload = multer({ storage });
 
 const uploadFile = async (req: Request, res: Response, next: NextFunction) => {
 
+
     const token = req.headers.authorization?.split(" ")[1]
 
     if (!token) {
@@ -38,14 +39,15 @@ const uploadFile = async (req: Request, res: Response, next: NextFunction) => {
     if (!usuario) {
         return errorResponse({ message: "Token no válido" })
     }
+ 
 
     upload.single('file')(req, res, async (err) => {
-
-
+        
         if (err) {
             return res.status(400).send({ message: 'Error uploading file.' });
         }
-
+        
+   
         if (!req.file) {
 
             return res.status(400).send({ message: 'No file uploaded.' });
@@ -77,7 +79,7 @@ const uploadFile = async (req: Request, res: Response, next: NextFunction) => {
             req.body.base64Img = base64Image;
             req.body.originalNameFile = req.file.filename;
           
-
+           
             next();
         } catch (processingError) {
             return res.status(500).send({ message: 'Error processing file.' });
